@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadrados perfectos y Raíces cuadradas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            body { background-color: white; }
+            .print-shadow-none { box-shadow: none !important; margin: 0 !important; max-width: 100% !important; }
+            input { border-bottom: 2px solid black !important; }
+            .no-print { display: none !important; }
+        }
+        /* Estilos para los huecos a rellenar */
+        .hueco {
+            width: 3.5rem;
+            border-bottom: 2px solid #4b5563;
+            background-color: transparent;
+            text-align: center;
+            font-weight: 600;
+            color: #1d4ed8;
+            outline: none;
+            font-size: 1.125rem;
+            margin: 0 0.25rem;
+            transition: all 0.3s ease;
+        }
+        .hueco:focus {
+            border-bottom-color: #2563eb;
+            background-color: #eff6ff;
+        }
+        /* Clases para aciertos y fallos */
+        .acierto {
+            color: #16a34a !important;
+            border-bottom-color: #16a34a !important;
+            background-color: #dcfce7 !important;
+        }
+        .fallo {
+            color: #dc2626 !important;
+            border-bottom-color: #dc2626 !important;
+            background-color: #fee2e2 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-8 text-gray-800 font-sans">
+
+    <div class="max-w-4xl mx-auto bg-white p-10 shadow-lg rounded-lg print-shadow-none">
+        
+        <!-- Botón de imprimir (opcional) -->
+        <div class="flex justify-end mb-4 no-print relative">
+            <button onclick="imprimirFicha()" class="text-blue-600 hover:text-blue-800 font-semibold py-1 px-3 text-sm underline transition-colors">
+                Versión para imprimir
+            </button>
+        </div>
+
+        <!-- Encabezado -->
+        <div class="border-b-4 border-blue-600 pb-4 mb-8">
+            <div class="flex justify-between items-end mb-2">
+                <h2 class="text-xl font-bold text-gray-700">Matemáticas 2º ESO</h2>
+                <span class="text-md font-semibold text-gray-600">Profesora: Cristina Ramos García</span>
+            </div>
+            <div class="mt-4 flex flex-col sm:flex-row items-start sm:items-center">
+                <span class="font-bold text-lg mr-4 whitespace-nowrap">Nombre y apellidos:</span>
+                <input type="text" id="nombre-alumno" class="w-full sm:flex-1 border-b-2 border-gray-400 outline-none text-lg px-2 mt-2 sm:mt-0" placeholder="Escribe aquí tu nombre...">
+            </div>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="text-3xl font-extrabold text-center text-blue-800 mb-8 uppercase tracking-wide">
+            Cuadrados perfectos y Raíces cuadradas
+        </h1>
+
+        <!-- Explicación visual -->
+        <div class="flex flex-col md:flex-row items-center justify-center bg-blue-50 p-6 rounded-xl border border-blue-200 mb-10">
+            <div class="mr-0 md:mr-10 mb-6 md:mb-0 text-center">
+                <svg width="140" height="140" viewBox="0 0 140 140" class="mx-auto">
+                    <rect x="10" y="10" width="120" height="120" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="3"/>
+                    <line x1="50" y1="10" x2="50" y2="130" stroke="#1e3a8a" stroke-width="2" opacity="0.5"/>
+                    <line x1="90" y1="10" x2="90" y2="130" stroke="#1e3a8a" stroke-width="2" opacity="0.5"/>
+                    <line x1="10" y1="50" x2="130" y2="50" stroke="#1e3a8a" stroke-width="2" opacity="0.5"/>
+                    <line x1="10" y1="90" x2="130" y2="90" stroke="#1e3a8a" stroke-width="2" opacity="0.5"/>
+                    <text x="70" y="75" font-size="20" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Área = 9</text>
+                </svg>
+                <p class="mt-2 text-sm font-semibold text-blue-900">Lado = 3 cuadritos</p>
+            </div>
+            <div class="text-lg text-gray-700 max-w-md">
+                <p class="mb-3">El área de un cuadrado se calcula multiplicando lado por lado (L²).</p>
+                <p class="mb-3">Si el <span class="font-bold">lado es 3</span>, su área es <span class="font-bold">3² = 9</span>.</p>
+                <p>Por tanto, si conocemos el área (9), podemos saber su lado calculando la raíz cuadrada: <span class="font-bold text-blue-700 bg-blue-100 px-2 py-1 rounded">√9 = 3</span></p>
+            </div>
+        </div>
+
+        <!-- Instrucciones -->
+        <p class="text-lg mb-6">
+            <strong>Instrucciones:</strong> Completa los huecos siguiendo el patrón lógico. Fíjate en los ejemplos resueltos. Al terminar, pulsa el botón <em>Comprobar</em> al final de la página.
+        </p>
+
+        <!-- Ejercicios principales (0 al 20) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg">
+            
+            <!-- Columna 1: 0 al 10 -->
+            <div class="flex flex-col space-y-4">
+                <div>0² = 0 <span class="mx-2 text-gray-500 text-base">por tanto</span> √0 = 0 <span class="text-xs text-green-600 ml-2 font-bold">(Ejemplo)</span></div>
+                <div>1² = <input type="text" class="hueco" data-respuesta="1"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="1"> = 1</div>
+                <div>2² = 4 <span class="mx-2 text-gray-500 text-base">por tanto</span> √4 = 2 <span class="text-xs text-green-600 ml-2 font-bold">(Ejemplo)</span></div>
+                <div>3² = <input type="text" class="hueco" data-respuesta="9"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="9"> = <input type="text" class="hueco" data-respuesta="3"></div>
+                <div><input type="text" class="hueco" data-respuesta="4">² = 16 <span class="mx-2 text-gray-500 text-base">por tanto</span> √16 = <input type="text" class="hueco" data-respuesta="4"></div>
+                <div>5² = <input type="text" class="hueco" data-respuesta="25"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="25"> = <input type="text" class="hueco" data-respuesta="5"></div>
+                <div>6² = 36 <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="36"> = 6</div>
+                <div>7² = <input type="text" class="hueco" data-respuesta="49"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="49"> = <input type="text" class="hueco" data-respuesta="7"></div>
+                <div>8² = <input type="text" class="hueco" data-respuesta="64"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √64 = <input type="text" class="hueco" data-respuesta="8"></div>
+                <div>9² = <input type="text" class="hueco" data-respuesta="81"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" data-respuesta="81"> = <input type="text" class="hueco" data-respuesta="9"></div>
+                <div>10² = 100 <span class="mx-2 text-gray-500 text-base">por tanto</span> √100 = 10 <span class="text-xs text-green-600 ml-2 font-bold">(Ejemplo)</span></div>
+            </div>
+
+            <!-- Columna 2: 11 al 20 -->
+            <div class="flex flex-col space-y-4">
+                <div>11² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="121"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="121"> = <input type="text" class="hueco" data-respuesta="11"></div>
+                <div>12² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="144"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √144 = <input type="text" class="hueco" data-respuesta="12"></div>
+                <div>13² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="169"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="169"> = <input type="text" class="hueco" data-respuesta="13"></div>
+                <div><input type="text" class="hueco" data-respuesta="14">² = 196 <span class="mx-2 text-gray-500 text-base">por tanto</span> √196 = <input type="text" class="hueco" data-respuesta="14"></div>
+                <div>15² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="225"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="225"> = <input type="text" class="hueco" data-respuesta="15"></div>
+                <div>16² = 256 <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="256"> = 16</div>
+                <div>17² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="289"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="289"> = <input type="text" class="hueco" data-respuesta="17"></div>
+                <div>18² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="324"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="324"> = <input type="text" class="hueco" data-respuesta="18"></div>
+                <div>19² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="361"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √361 = <input type="text" class="hueco" data-respuesta="19"></div>
+                <div>20² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="400"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="400"> = <input type="text" class="hueco" data-respuesta="20"></div>
+            </div>
+            
+        </div>
+
+        <hr class="my-10 border-gray-300">
+
+        <!-- Casos fáciles -->
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-blue-500 pl-3">Los casos más fáciles</h3>
+        <p class="text-md mb-6 text-gray-600">Cuando calculamos decenas exactas, los ceros se duplican en el cuadrado. ¡Mira los ejemplos y completa el resto!</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg bg-gray-50 p-6 rounded-lg border border-gray-200 mb-10">
+            <div>10² = 100 <span class="mx-2 text-gray-500 text-base">por tanto</span> √100 = 10</div>
+            <div>20² = 400 <span class="mx-2 text-gray-500 text-base">por tanto</span> √400 = 20</div>
+            <div>30² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="900"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √900 = <input type="text" class="hueco" data-respuesta="30"></div>
+            <div><input type="text" class="hueco" data-respuesta="40">² = 1600 <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="1600"> = 40</div>
+            <div>50² = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="2500"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 4rem;" data-respuesta="2500"> = <input type="text" class="hueco" data-respuesta="50"></div>
+            <div>100² = <input type="text" class="hueco" style="width: 5rem;" data-respuesta="10000"> <span class="mx-2 text-gray-500 text-base">por tanto</span> √<input type="text" class="hueco" style="width: 5rem;" data-respuesta="10000"> = <input type="text" class="hueco" style="width: 4rem;" data-respuesta="100"></div>
+        </div>
+
+        <!-- Botón de comprobación interactiva -->
+        <div class="flex justify-center mt-8 no-print">
+            <button onclick="evaluarFicha()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition hover:scale-105 text-xl">
+                ✔️ Comprobar mis resultados
+            </button>
+        </div>
+
+        <!-- Caja de Resultados (Oculta por defecto) -->
+        <div id="caja-resultado" class="hidden mt-10 p-6 rounded-xl shadow-md border-l-8 transition-all duration-500 no-print">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-3xl font-bold" id="texto-nota">Tu nota es: 0 / 10</h3>
+            </div>
+            <p class="text-xl font-semibold mb-6" id="texto-mensaje"></p>
+            
+            <div class="bg-white p-5 rounded-lg border border-gray-300 shadow-inner">
+                <p class="text-lg text-gray-800">
+                    <span class="font-bold text-blue-700">INSTRUCCIONES:</span> 
+                    Haz captura de pantalla de tu mejor resultado y entrégalo en Classroom en el lugar de la tarea. Asegúrate de que se vea tu nombre en la captura.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function imprimirFicha() {
+            try { window.print(); } catch (e) { console.warn("Impresión bloqueada"); }
+        }
+
+        function evaluarFicha() {
+            // Verificar si ha puesto el nombre
+            const nombre = document.getElementById('nombre-alumno').value.trim();
+            if(!nombre) {
+                alert("Por favor, escribe tu nombre y apellidos antes de comprobar los resultados.");
+                document.getElementById('nombre-alumno').focus();
+                return;
+            }
+
+            const inputs = document.querySelectorAll('.hueco');
+            let correctas = 0;
+            let total = inputs.length;
+
+            // Evaluar cada hueco
+            inputs.forEach(input => {
+                // Quitar espacios en blanco al inicio/final por si el alumno los pone
+                const respuestaUsuario = input.value.trim();
+                const respuestaCorrecta = input.getAttribute('data-respuesta');
+
+                input.classList.remove('acierto', 'fallo'); // Limpiar clases previas
+
+                if (respuestaUsuario === respuestaCorrecta) {
+                    correctas++;
+                    input.classList.add('acierto');
+                } else {
+                    input.classList.add('fallo');
+                }
+            });
+
+            // Calcular nota proporcional sobre 10
+            let nota = (correctas / total) * 10;
+            // Redondear a un decimal
+            nota = Math.round(nota * 10) / 10; 
+
+            // Determinar el mensaje y el estilo de la caja
+            let mensaje = "";
+            let colorClase = "";
+
+            if (nota > 8) {
+                mensaje = "¡Enhorabuena, prueba conseguida! 🎉";
+                colorClase = "bg-green-50 border-green-500 text-green-900";
+            } else if (nota >= 5 && nota <= 8) {
+                mensaje = "Has avanzado mucho pero te recomiendo volver a intentarlo y mejorar tus resultados. 👍";
+                colorClase = "bg-yellow-50 border-yellow-500 text-yellow-900";
+            } else {
+                mensaje = "Oh, lo siento, no salió bien, no te desanimes, vuelve a intentarlo. 💪";
+                colorClase = "bg-red-50 border-red-500 text-red-900";
+            }
+
+            // Actualizar la interfaz con los resultados
+            const cajaResultado = document.getElementById('caja-resultado');
+            document.getElementById('texto-nota').innerText = `Tu nota es: ${nota} / 10`;
+            document.getElementById('texto-mensaje').innerText = mensaje;
+            
+            // Aplicar el color de fondo y borde según la nota
+            cajaResultado.className = `mt-10 p-6 rounded-xl shadow-md border-l-8 transition-all duration-500 no-print ${colorClase} block`;
+            
+            // Hacer scroll suave hacia abajo para que el alumno vea su nota
+            cajaResultado.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+    </script>
+</body>
+</html>
